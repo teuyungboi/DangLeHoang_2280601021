@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Baitapbuoi3
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btnthem_Click(object sender, EventArgs e)
+        {
+            ListViewItem item = new ListViewItem(txtfirstname.Text);
+
+            item.SubItems.Add(txtlastname.Text);
+            item.SubItems.Add(txtphone.Text);
+            SinhVien.Items.Add(item);
+            SinhVien.FullRowSelect = true;
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (SinhVien.SelectedItems.Count > 0)
+            {
+                txtfirstname.Text = SinhVien.SelectedItems[0].SubItems[0].Text;
+                txtlastname.Text = SinhVien.SelectedItems[0].SubItems[1].Text;
+                txtphone.Text = SinhVien.SelectedItems[0].SubItems[2].Text;
+            }
+
+        }
+
+        private void btnxoa_Click(object sender, EventArgs e)
+        {
+            if (SinhVien.SelectedItems.Count > 0)
+            {
+                SinhVien.Items.Remove(SinhVien.SelectedItems[0]);
+            }
+            else
+            {
+                MessageBox.Show("phai chon it nhat 1 dong");
+            }
+        }
+
+        private void btnsua_Click(object sender, EventArgs e)
+        {
+            if (SinhVien.SelectedItems.Count > 0)
+            {
+                SinhVien.SelectedItems[0].SubItems[0].Text = txtfirstname.Text;
+                SinhVien.SelectedItems[0].SubItems[1].Text = txtlastname.Text;
+                SinhVien.SelectedItems[0].SubItems[2].Text = txtphone.Text;
+            }
+            else
+            {
+                MessageBox.Show("phai chon it nhat 1 dong");
+            }
+        }
+    }
+}
+    
